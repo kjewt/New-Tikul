@@ -1,4 +1,3 @@
-import './assets/css/style.css';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from "./business/ScrollToTop";
 import Footer from './components/common/Footer';

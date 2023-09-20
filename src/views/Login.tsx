@@ -1,13 +1,13 @@
-// import { Link } from 'react-router-dom'
-// import EmailCheck from '../components/auth/EmailCheck';
-// import Password from '../components/auth/Password';
-// import BtnLogin from '../components/auth/BtnLogin';
-// import BtnGoogleLogin from '../components/auth/BtnGoogleLogin';
+import { Link } from 'react-router-dom'
+import EmailCheck from '../components/auth/EmailCheck';
+import Password from '../components/auth/Password';
+import BtnLogin from '../components/auth/BtnLogin';
+import BtnGoogleLogin from '../components/auth/BtnGoogleLogin';
 
 const Login = (): JSX.Element => {
   return (
     <>
-      {/* <div className="container min-h-screen">
+      <div className="container min-h-screen">
         <div className="flex flex-col items-center">
           <div className="text-center">
             <Link to="/">
@@ -34,7 +34,7 @@ const Login = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };
