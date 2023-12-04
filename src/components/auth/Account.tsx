@@ -1,31 +1,18 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { accountState, isAccountState } from '../../state/atoms';
+import { AccountValid } from '../../business/valid/AccountValid';
+// import { useRecoilState } from 'recoil';
+// import { accountState, isAccountState } from '../../state/atoms';
 
-const isAccountValid = (account: string): boolean => {
-    const accountRegex = /^[1-9][0-9]{8,13}$/;
-    return accountRegex.test(account);
-};
 
-const Account = (): JSX.Element => {
-    const [account, setAccount] = useRecoilState(accountState);
-    const [isAccount, setIsAccount] = useRecoilState(isAccountState);
-    const [isValidAccount, setIsValidAccount] = useState(true);
-    const [isTyping, setIsTyping] = useState(false)
+export const Account = (): JSX.Element => {
+    const [account, setAccount] = useState("");
+    const isValid = AccountValid(account)
+    const isError = !isValid && (account !== "")
 
     const handleAccountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newAccount = event.target.value.replace(/\s/g, '');
-        if (!isNaN(Number(newAccount)) && newAccount.length <= 13) {
-            setIsValidAccount(isAccountValid(newAccount));
-            setAccount(newAccount);
-        } else {
-            setIsValidAccount(false);
-        }
-        if (!isNaN(Number(newAccount)) && newAccount.length <= 13 && newAccount.length >= 9) {
-            setIsAccount(true);
-        }
+        const userAccount = event.target.value.replace(/\s/g, '').slice(0, 13);
+        setAccount(userAccount)
 
-        setIsTyping(newAccount.length > 0);
     };
 
 
@@ -34,8 +21,8 @@ const Account = (): JSX.Element => {
             <div className="form-control">
                 <label className="label">
                     <span className="label-text">계좌 등록</span>
-                    {isTyping && (
-                        <span className="password-error text-sm text-primary">
+                    {isError && (
+                        <span className="password-error text-sm text-error">
                             9~13자리의 숫자로 작성해주세요.
                         </span>
                     )}
@@ -43,7 +30,7 @@ const Account = (): JSX.Element => {
                 <input
                     type="text"
                     placeholder="숫자로 작성해주세요."
-                    className={`input input-bordered input-primary ${!isValidAccount ? 'input-error' : ''}`}
+                    className={`input input-bordered input-primary ${isError ? 'input-error' : ''}`}
                     value={account}
                     onChange={handleAccountChange}
                 />
@@ -51,5 +38,3 @@ const Account = (): JSX.Element => {
         </>
     );
 };
-
-export default Account;

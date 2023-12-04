@@ -1,62 +1,34 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import {
-    emailState,
-    passwordState,
-    bankNameState,
-    accountState,
-    accountPasswordState,
-    isEmailState,
-    isSamePassportState,
-    isAccountState,
-    isSameAccountPassportState,
-    isCheckedState,
-} from '../../state/atoms';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth, db } from '../../../firebase';
 import { doc, setDoc } from 'firebase/firestore'
+import type { ChildrenValue } from '../../types/authTypes';
 
-const BtnJoin = (): JSX.Element => {
+export const BtnJoin = ({ email, password, cbx }: { email: ChildrenValue, password: ChildrenValue, cbx: boolean }): JSX.Element => {
+    const isValid = email.valid && password.valid && cbx
     const navigate = useNavigate();
-    const [isEmail, setIsEmail] = useRecoilState(isEmailState);
-    const [isSamePassport, setIsSamePassport] = useRecoilState(isSamePassportState);
-    const [isAccount, setIsAccount] = useRecoilState(isAccountState);
-    const [bankName, setBankName] = useRecoilState(bankNameState);
-    const [isSameAccount, setIsSameAccount] = useRecoilState(isSameAccountPassportState);
-    const [isChecked, setIsChecked] = useRecoilState(isCheckedState);
-
-    const [email, setEmail] = useRecoilState(emailState);
-    const [password, setPassword] = useRecoilState(passwordState);
-    const [account, setAccount] = useRecoilState(accountState);
-    const [accountPassword, setAccountPassword] = useRecoilState(accountPasswordState);
-
-    const checkList = [isEmail, isSamePassport, isAccount, Boolean(bankName), isSameAccount, isChecked];
-    const isAllTrue = checkList.every((value) => value);
-
-    // 지울 영역
 
 
-    const Signup = async () => {
+    const SignUp = async () => {
         try {
-            // Firebase 인증
-            await createUserWithEmailAndPassword(firebaseAuth, email, password);
-            console.log('회원가입 성공');
+            await createUserWithEmailAndPassword(firebaseAuth, email.value, password.value);
+
 
             // 사용자 정보 Firestore에 저장
             const user = firebaseAuth.currentUser;
 
             if (user) {
                 const userData = {
-                    email: email,
-                    account: account,
-                    bankName: bankName,
-                    accountPassword: accountPassword,
+                    IsRegister: false,
+                    email: email.value,
+                    account: null,
+                    bank: null,
+                    accountPW: null,
                     balance: 0,
                 };
                 await setDoc(doc(db, "users", user.uid), userData);
-
-                navigate('/login'); // 회원가입 성공 후 로그인 페이지로 이동
+                console.log('회원가입 성공');
+                navigate('/login');
             }
         } catch (error) {
             console.log('회원가입 실패', error);
@@ -67,13 +39,14 @@ const BtnJoin = (): JSX.Element => {
         <>
             <div className="form-control my-6">
                 <button
-                    className={`btn btn-primary ${isAllTrue ? '' : 'btn-disabled'}`}
-                    onClick={Signup}>
+                    className="btn btn-primary"
+                    disabled={!isValid}
+                    onClick={SignUp}>
                     회원가입하기
+
                 </button>
             </div>
         </>
     );
 };
 
-export default BtnJoin;

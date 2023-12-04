@@ -1,21 +1,17 @@
 import {atom} from "recoil";
+import type {AccountData} from "../types/authTypes";
 
-// const getTodayDate = () => {
-//   const today = new Date();
-
-// };
-
-export const accountDataState = atom({
+export const accountDataState = atom<AccountData>({
   key: "accountDataState",
   default: {
-    account: "",
-    accountPassword: "",
+    IsRegister: false,
+    account: null,
+    accountPW: null,
     balance: 0,
-    bankName: "",
-    email: "",
+    bank: null,
+    email: null,
   },
 });
-
 export const transactionsState = atom<any[]>({
   key: "transactionsState",
   default: [],
