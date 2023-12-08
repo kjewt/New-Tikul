@@ -30,7 +30,7 @@ const Login = (): JSX.Element => {
             <p className="py-3 mt-8">로그인</p>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <div className="card-body p">
               <form>
                 <Email onEmailChange={handleEmailChange} />
                 <Password onPasswordChange={handlePasswordChange} />
@@ -40,11 +40,8 @@ const Login = (): JSX.Element => {
                 <hr className="w-1/3"></hr>
                 <span>or</span>
                 <hr className="w-1/3"></hr>
-                <BtnGoogleLogin />
               </div>
-
-
-
+              <BtnGoogleLogin />
             </div>
           </div>
         </div>

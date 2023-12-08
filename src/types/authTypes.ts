@@ -25,4 +25,5 @@ export type AccountData = {
   balance: number;
   bank: commonType;
   email: commonType;
+  name: commonType;
 };

@@ -1,7 +1,7 @@
-// import { Link } from 'react-router-dom'
-// import { useRecoilState } from 'recoil';
-// import { isBankingState, accountDataState } from '../state/atoms';
-// import NavBar from '../components/common/NavBar';
+import { Link } from 'react-router-dom'
+import { useRecoilState } from 'recoil';
+import { accountDataState } from '../state/atoms';
+import { NavBar } from '../components/common/NavBar';
 // import Banking from '../components/main/Banking';
 // import Transfer from '../components/main/Transfer';
 // import Summary from '../components/main/Summary';
@@ -9,19 +9,19 @@
 
 const Home = (): JSX.Element => {
     // const [isBanking, setIsBanking] = useRecoilState(isBankingState);
-    // const [accountData, setAccountData] = useRecoilState(accountDataState)
+    const [accountData, setAccountData] = useRecoilState(accountDataState)
 
     return (
         <>
-            {/* <div className="container min-h-screen">
+            <div className="container min-h-screen">
                 {accountData ? (
                     <>
 
                         <NavBar />
-                        <div className="flex">
+                        {/* <div className="flex">
                             <Summary />
                             {isBanking == 0 ? <Banking /> : isBanking == 1 ? <Transfer /> : <AddMoney />}
-                        </div>
+                        </div> */}
                     </>
                 ) : (
                     <div className="flex flex-col p-10 items-center">
@@ -31,7 +31,7 @@ const Home = (): JSX.Element => {
                         </Link>
                     </div>
                 )}
-            </div> */}
+            </div>
         </>
     );
 };

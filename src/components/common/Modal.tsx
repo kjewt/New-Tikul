@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const Modal = (props) => {
+type PropsType = {
+    title: string
+    content: string
+}
+export const Modal = (props: PropsType) => {
     const [isHidden, setIsHidden] = useState(false);
 
     const close = () => {
@@ -21,5 +25,3 @@ const Modal = (props) => {
         </div>
     );
 };
-
-export default Modal;

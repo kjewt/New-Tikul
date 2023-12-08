@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 // import { useRecoilState } from 'recoil';
 // import { accountDataState } from '../state/atoms';
-
+import { NavBar } from "../components/common/NavBar";
 // import DropDown from '../components/common/Dropdown';
 // import Account from '../components/auth/Account';
 // import AccountPasswordCheck from '../components/auth/AccountPasswordCheck'
@@ -10,7 +10,10 @@
 const Join = (): JSX.Element => {
     // const [accountData, setAccountData] = useRecoilState(accountDataState);
     return (
+
         <>
+            <NavBar />
+            setting
             {/* //     <div className="container min-h-screen">
                  <div className="flex flex-col items-center">
                      <span>이메일</span>

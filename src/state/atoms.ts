@@ -10,8 +10,10 @@ export const accountDataState = atom<AccountData>({
     balance: 0,
     bank: null,
     email: null,
+    name: null,
   },
 });
+
 export const transactionsState = atom<any[]>({
   key: "transactionsState",
   default: [],

@@ -62,7 +62,7 @@ export const BtnGoogleLogin = (): JSX.Element => {
 
     return (
         <>
-            <div className="form-control mt-6">
+            <div className="form-control mt-2">
                 <button className="btn btn-outline btn-primary" onClick={Login}>
                     <div className="flex items-center gap-2">
                         <FcGoogle className="text-xl" />
