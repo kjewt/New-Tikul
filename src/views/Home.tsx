@@ -9,7 +9,7 @@ import { NavBar } from '../components/common/NavBar';
 
 const Home = (): JSX.Element => {
     // const [isBanking, setIsBanking] = useRecoilState(isBankingState);
-    const [accountData, setAccountData] = useRecoilState(accountDataState)
+    const [accountData] = useRecoilState(accountDataState)
 
     return (
         <>
@@ -25,7 +25,7 @@ const Home = (): JSX.Element => {
                     </>
                 ) : (
                     <div className="flex flex-col p-10 items-center">
-                        <span>사용자 정보가 없습니다.</span>
+                        <span>사용자 정보가 없습니다. 먼저 로그인 해주세요!</span>
                         <Link to="/login">
                             <button className="btn btn-primary  w-40 text-base-100 m-6">로그인</button>
                         </Link>
